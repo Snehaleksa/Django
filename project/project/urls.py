@@ -22,4 +22,8 @@ from app import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('name/<a>',views.name),
+    path('index/<b>',views.index),
+    path('largest/<a>',views.largest),
+    path('reg',views.registration),
+    path('ab',views.form),
 ]
