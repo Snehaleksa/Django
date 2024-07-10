@@ -25,5 +25,9 @@ urlpatterns = [
     path('index/<b>',views.index),
     path('largest/<a>',views.largest),
     path('reg',views.registration),
-    path('ab',views.form),
+    path('form',views.form),
+    path('show',views.show),
+    path('search',views.search),
+    path('show1',views.show),
+    path('search1',views.show),
 ]

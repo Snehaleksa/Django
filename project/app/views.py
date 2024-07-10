@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from .models import Student
 from .models import Class
@@ -34,7 +34,7 @@ def registration(request):
       phone=request.POST['phonenumber']
       data = Student.objects.create(Name=name,Age=age,Phone=phone)
       data.save()
-      return HttpResponse("Succesfully")
+      return redirect(show)
    else:
       return render(request,'registration.html')
 
@@ -52,8 +52,26 @@ def form(request):
       phonenumber=request.POST['phonenumber']
       username=request.POST['username']
       password=request.POST['password']
-      data=Class.objects.create(Name=name,Gender=gender,Age=age,Date=date,Disrtict=district,Phone=phonenumber,Username=username,Password=password)
+      data=Class.objects.create(Name=name,Gender=gender,Age=age,Date=date,District=district,Phone=phonenumber,Username=username,Password=password)
       data.save()
-      return HttpResponse("success")
+      return redirect(show)
    else:
       return render(request,'form.html')
+   
+
+def show(request):
+      data=Student.objects.all()
+      return render(request,'show.html',{'data1':data})
+
+
+def search(request):
+   if request.method=='POST':
+      search =request.POST['search']
+      data=Student.objects.filter(Name=search)
+      return render(request,'show.html',{'data1':data})
+   else:
+      return redirect(show)
+def show1(request): 
+      data=Class.objects.all()
+      return render(request,'show1.html',{'data2':data})
+    
