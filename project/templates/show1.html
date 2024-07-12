@@ -22,6 +22,8 @@
         <th>Phonenumber</th>
         <th>Username</th>
         <th>Password</th>
+        <th></th>
+        <th></th>
     </tr>
     {% for i in data2 %}
     <tr>
@@ -33,12 +35,15 @@
         <td>{{i.Phone}}</td>
         <td>{{i.Username}}</td>
         <td>{{i.Password}}</td>
+        <td><a href="{% url 'edit1' id=i.id %}">Edit</a></td>
+        <td><a href="{% url 'delete1' id=i.id %}">Delete</a></td>
     </tr>
     {% endfor %}
 
    </table>
-   <form action="">
-    <input type="search"name='search'required>
+   <form action="search1" method='post'>
+    {% csrf_token %}
+    <input type="search"name='search1'required>
     <input type="submit" value="Search">
    </form>
 <br><br>

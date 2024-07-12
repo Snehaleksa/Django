@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="{% url 'edit1' id=data.id %}" method="post">
+        {% csrf_token %}
+        <label for="">Name: </label>
+        <input type="text" name="name" value="{{data.Name}}" required><br><br>
+        <select name="gender" value="{{data.Gender}}" id="">
+            <option value="">gender</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+        </select><br>
+        <label for="">age:</label>
+        <input type="text"name="age" value={{data.Age}} required><br><br>
+        <label for="">date of birth</label>
+        <input type="date"id="birthday"name="date of birth" value="{{data.Date}}" required><br><br>
+        <label for="">district:</label>
+        <input type="text"name="district" value="{{data.District}}" required><br><br>
+        <label for="">phone number:</label>
+        <input type="text"name="phone number" value="{{data.Phone}}" required><br><br>
+        <label for="">username</label>
+        <input type="text"name="username" valuue="{{data.Username}}" required><br><br>
+        <label for="">password:</label>
+        <input type="text"name="password" value="{{data.Password}}" required><br><br>
+            
+        <input type="submit">
+    </form>
+</body>
+</html>

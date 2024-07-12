@@ -74,4 +74,48 @@ def search(request):
 def show1(request): 
       data=Class.objects.all()
       return render(request,'show1.html',{'data2':data})
+def search1(request):
+   if request.method=='POST':
+    search1 =request.POST['search1']
+    data=Class.objects.filter(Name=search1)
+   
+    return render(request,'show1.html',{'data2':data})
+   else:
+      return redirect(show1)   
+
+def edit(request,id):
+    data=Student.objects.get(id=id) 
+    if request.method=='POST':
+        data.Name=request.POST['name']
+        data.Age=request.POST['age']
+        data.Phone=request.POST['phonenumber']
+        data.save()
+        return redirect(show)
+    else:
+        return render(request,'edit.html',{'data':data})
     
+def delete(request,id):
+    data=Student.objects.get(id=id)
+    data.delete()
+    return redirect(show)
+
+def edit1(request,id):
+    data=Class.objects.get(id=id)
+    if request.method=='POST':
+        data.Name=request.POST['name']
+        data.Gender=request.POST['gender']
+        data.Age=request.POST['age']
+        data.Date=request.POST['date of birth']
+        data.District=request.POST['district']
+        data.Phone=request.POST['phone number']
+        data.Username=request.POST['username']
+        data.Password=request.POST['password']
+        data.save()
+        return redirect(show1)
+    else:
+       return render(request,'edit1.html',{'data':data})
+
+def delete1(request,id):
+   data=Class.objects.get(id=id)
+   data.delete()
+   return redirect(show1)

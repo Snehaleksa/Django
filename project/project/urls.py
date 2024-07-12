@@ -28,6 +28,10 @@ urlpatterns = [
     path('form',views.form),
     path('show',views.show),
     path('search',views.search),
-    path('show1',views.show),
-    path('search1',views.show),
+    path('show1',views.show1),
+    path('search1',views.search1),
+    path('edit/<int:id>',views.edit,name='edit'),
+    path('delete/<int:id>',views.delete,name='delete'),
+    path('edit1/<int:id>',views.edit1,name='edit1'),
+    path('delete1/<int:id>',views.delete1,name='delete1'),
 ]
