@@ -1,4 +1,6 @@
 from django.shortcuts import render,redirect
+from django.contrib.auth.models import User
+from .forms import RegisterForm
 from django.http import HttpResponse
 from .models import Student
 from .models import Class
@@ -42,7 +44,7 @@ def registration(request):
    
 
 
-def form(request):
+def form1(request):
    if request.method=='POST':
       name=request.POST['name']
       gender=request.POST['gender']
@@ -54,9 +56,9 @@ def form(request):
       password=request.POST['password']
       data=Class.objects.create(Name=name,Gender=gender,Age=age,Date=date,District=district,Phone=phonenumber,Username=username,Password=password)
       data.save()
-      return redirect(show)
+      return redirect(show1)
    else:
-      return render(request,'form.html')
+      return render(request,'form1.html')
    
 
 def show(request):
@@ -119,3 +121,30 @@ def delete1(request,id):
    data=Class.objects.get(id=id)
    data.delete()
    return redirect(show1)
+
+def register(request):
+   if request.method=='POST':
+     print("====")
+     form =RegisterForm()
+     print("1234")
+     if form.is_valid():
+         print("789")
+         first_name =form.cleaned_data['first_name']
+         print(first_name)
+         last_name =form.cleaned_data['last_name']
+         email =form.cleaned_data['email']
+         username =form.cleaned_data['username']
+         password =form.cleaned_data['password']
+         data =User.objects.create_user(first_name=first_name,last_name=last_name,email=email,username=username,password=password)
+         data.save()
+         print(data)
+         return HttpResponse("Successfully registerd")
+     else:
+         print("----")
+         form =RegisterForm()
+         return render(request,'form.html',{'form': form})
+     
+   else:
+      print('++++')
+      form =RegisterForm()  
+      return render(request,'form.html',{'form': form})

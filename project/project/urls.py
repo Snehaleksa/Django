@@ -25,7 +25,7 @@ urlpatterns = [
     path('index/<b>',views.index),
     path('largest/<a>',views.largest),
     path('reg',views.registration),
-    path('form',views.form),
+    path('form1',views.form1),
     path('show',views.show),
     path('search',views.search),
     path('show1',views.show1),
@@ -34,4 +34,5 @@ urlpatterns = [
     path('delete/<int:id>',views.delete,name='delete'),
     path('edit1/<int:id>',views.edit1,name='edit1'),
     path('delete1/<int:id>',views.delete1,name='delete1'),
+    path('register',views.register),
 ]

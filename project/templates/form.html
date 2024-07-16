@@ -6,31 +6,13 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="form" method="post">
-        {% csrf_token %}
-        <label for="">Name: </label>
-        <input type="text" name="name" required><br><br>
-        <select name="gender" id="">
-            <option value="">gender</option>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-        </select><br>
-        <label for="">age:</label>
-        <input type="text"name="age" required><br><br>
-        <label for="">date of birth</label>
-        <input type="date"id="birthday"name="date of birth" required><br><br>
-        <label for="">district:</label>
-        <input type="text"name="district" required><br><br>
-        <label for="">phonenumber:</label>
-        <input type="text"name="phonenumber" required><br><br>
-        <label for="">username</label>
-        <input type="text"name="username" required><br><br>
-        <label for="">password:</label>
-        <input type="text"name="password" required><br><br>
-            
-        <input type="submit">
-    </form>
-<br><br>
-<a href="show1">show data</a>
+    
+   <form action="register" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Submit">
+
+   </form>
+
 </body>
 </html>
