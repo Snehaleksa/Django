@@ -16,6 +16,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
 from app import views
 
 
@@ -34,5 +36,11 @@ urlpatterns = [
     path('delete/<int:id>',views.delete,name='delete'),
     path('edit1/<int:id>',views.edit1,name='edit1'),
     path('delete1/<int:id>',views.delete1,name='delete1'),
-    path('register',views.register),
+    #path('register',views.register),
+    path('modelforms',views.modelforms),
+    #path('builtin',views.builtin),
+    path('abstract',views.abstract),
 ]
+
+if settings.DEBUG:
+  urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

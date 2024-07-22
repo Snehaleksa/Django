@@ -6,4 +6,12 @@ from .models import Class
 
 
 admin.site.register(Student)
-admin.site.register(Class)
+
+
+
+class ClassAdmin(admin.ModelAdmin):
+    list_display=('Name','Gender','Age','Date','District','Phone','Username','Password')
+    fieldsets = ((None, {'fields':('Name','Age','Date')}),)
+    search_fields=('Name','Date')
+
+admin.site.register(Class,ClassAdmin)    

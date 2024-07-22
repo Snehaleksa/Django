@@ -1,9 +1,10 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.models import User
-from .forms import RegisterForm
+from .forms import RegisterForm,JangomodelForm
 from django.http import HttpResponse
 from .models import Student
 from .models import Class
+from .models import CustomUser
 
 # Create your views here.
 def name(request,a):
@@ -122,29 +123,68 @@ def delete1(request,id):
    data.delete()
    return redirect(show1)
 
-def register(request):
-   if request.method=='POST':
-     print("====")
-     form =RegisterForm()
-     print("1234")
-     if form.is_valid():
-         print("789")
-         first_name =form.cleaned_data['first_name']
-         print(first_name)
-         last_name =form.cleaned_data['last_name']
-         email =form.cleaned_data['email']
-         username =form.cleaned_data['username']
-         password =form.cleaned_data['password']
-         data =User.objects.create_user(first_name=first_name,last_name=last_name,email=email,username=username,password=password)
-         data.save()
-         print(data)
-         return HttpResponse("Successfully registerd")
-     else:
-         print("----")
-         form =RegisterForm()
-         return render(request,'form.html',{'form': form})
+#def register(request):
+ #  if request.method=='POST':
+  #   print("====")
+     #form =RegisterForm(request.POST)
+    # print("1234")
+     #if form.is_valid():
+         #print("789")
+         #first_name =form.cleaned_data['first_name']
+         #print(first_name)
+         #last_name =form.cleaned_data['last_name']
+         #email =form.cleaned_data['email']
+         #username =form.cleaned_data['username']
+         #password =form.cleaned_data['password']
+         #data =User.objects.create_user(first_name=first_name,last_name=last_name,email=email,username=username,password=password)
+         #data.save()
+         #print(data)
+         #return HttpResponse("Successfully registerd")
+     #else:
+      #   print("----")
+       #  form =RegisterForm()
+        # return render(request,'form.html',{'form': form})
      
+   #else:
+    #  print('++++')
+     # form =RegisterForm()  
+      #return render(request,'form.html',{'form': form})
+def modelforms(request):
+   if request.method =='POST':
+      form =JangomodelForm(request.POST)
+      if form.is_valid():
+         form.save()
+         return HttpResponse("successfullY registerd")
+      else:
+         form = JangomodelForm()
+         return render(request,'modelforms.html',{'form': form})
    else:
-      print('++++')
-      form =RegisterForm()  
-      return render(request,'form.html',{'form': form})
+      form = JangomodelForm()
+      return render(request,'modelforms.html',{'form': form})   
+#def builtin(request):
+   #if request.method=='POST':
+      #name=request.POST['name']
+      #email=request.POST['email']
+      #username=request.POST['username']
+      #password=request.POST['password']
+      #data=User.objects.create_user(first_name=name,email=email,username=username,password=password)
+      #data.save()
+      #return HttpResponse("successfully registerd")
+   #else:
+      #return render(request,'user.html')   
+
+
+def abstract(request):
+   if request.method=='POST':
+      name=request.POST['name']
+      email=request.POST['email']
+      username=request.POST['username']
+      password=request.POST['password']
+      age=request.POST['age']
+      address=request.POST=['address']
+      image=request.POST['image']
+      data = CustomUser.objects.create_user(first_name=name,email=email,username=username,password=password,age=age,address=address,image=image)
+      data.save()
+      return HttpResponse("successfully registerd")
+   else:
+      return render(request,'user2.html')       

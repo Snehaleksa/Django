@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
+
 
 # Create your models here.
 class Student(models.Model):
@@ -24,3 +26,21 @@ class Class(models.Model):
         return self.Name
     
         
+class Jangomodels(models.Model):
+    name = models.CharField(max_length=30)
+    email=models.EmailField()
+    username = models.CharField(max_length=30)
+    password=models.CharField(max_length=30)
+
+    def __str__(self):
+        return self.name   
+    
+
+class CustomUser(AbstractUser):
+    age = models.IntegerField()
+    address = models.CharField(max_length=30)
+    image = models.FileField()
+    
+
+    def __str__(self):
+        return self.username
